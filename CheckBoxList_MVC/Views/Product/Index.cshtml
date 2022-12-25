@@ -1,0 +1,42 @@
+﻿@model CheckBoxList_MVC.Models.ProductModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+</style>
+
+
+@using (Html.BeginForm())
+{
+<div class="container">
+    <table>
+        @for (int i = 0; i < Model.Products.Count; i++)
+        {
+            if (i % 3 == 0)
+            {
+                @:<tr></tr>
+            }
+            <td>
+                @Html.CheckBoxFor(model => model.Products[i].IsChecked)
+                <label>@Model.Products[i].ProductName</label>
+                @Html.HiddenFor(model => model.Products[i].ProductID)
+                @Html.HiddenFor(model => model.Products[i].ProductName)
+            </td>
+        }
+
+    </table>
+
+    <input type="submit" value="Submit" />
+
+</div>
+}
+
